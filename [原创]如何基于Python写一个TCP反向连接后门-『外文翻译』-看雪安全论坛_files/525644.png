@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	
+			
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="XiunoBBS 4.0" />
+	<meta name="keywords" content="看雪学院" />
+	<meta name="description" content="看雪学院" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+
+	<title>用户登录</title>
+	
+	<link rel="shortcut icon" href="static/favicon.ico" />
+	<link rel="icon" sizes="32x32" href="static/favicon.ico">
+	<link rel="Bookmark" href="static/favicon.ico" />
+	
+	<link rel="stylesheet" href="//bbs.pediy.com/view/css/bootstrap.css">
+	
+	<link rel="stylesheet" href="//bbs.pediy.com/view/css/bootstrap-bbs.css">
+	
+	<link rel="stylesheet" href="xiunoui/index.css">
+	<link rel="stylesheet" href="//bbs.pediy.com/plugin/kanxue/css/kanxue.css">
+</head>
+
+<body>
+<style>
+#header {
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1);
+    background: #fafafa;
+}
+
+#header .container, #header .container nav {
+    height: 64px;
+    line-height: 64px;
+}
+
+#header .navbar {
+    padding: 0;
+}
+
+#header nav li.nav-item {
+    line-height: 34px;
+}
+
+#header nav a.nav-link {
+    font-size: 16px;
+    color: #757575;
+    font-weight: 500;
+    text-decoration: none;
+}
+#header .login_btn,  #header .reg_btn{
+	font-size: 13px;
+	padding: 4px 16px;
+	
+	font-weight: 500;
+	color: #0099ee;
+	text-decoration: none;
+	border: 1px solid #0099ee;
+ }
+#header .reg_btn {
+	color: #fff;
+	background: #0099ee;
+}
+
+#header nav a.nav-link,
+#header nav .dropdown {
+    padding: 0 1rem;
+}
+
+#header nav a.nav-link:hover {
+    background-color: #F3F3F3;
+}
+
+#header nav li.nav-item.active a {
+    color: #0099ee;
+    font-weight: 600;
+}
+
+#header nav .home_seach_form {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#header nav .dropdown a.dropdown-item:hover {
+    color: #0099ee;
+    text-decoration: none;
+    background-color: #f3f3f3;
+}
+
+.dropup .dropdown-toggle::after {
+    display: none !important;
+}
+.header_nav_a {
+    padding: 10px 0;
+}
+.bottom-nav {
+    /* display: none; */
+    background-color: #fafafa;
+    box-shadow: 0 -1px rgba(0,0,0,0.1), 0 -2px 10px rgba(0,0,0,0.1);
+}
+.bottom-nav .opts-group {
+    position: relative;
+    display: inline-block;
+    padding-top: 6px;
+    line-height: 20px;
+    color: #9e9e9e;
+    cursor: pointer;
+}
+.bottom-nav .opts-group.active {
+    color: #0099ee;
+}
+.header_seach_but {
+    display: none !important;
+}
+@media screen and (min-width: 992px) {
+    .bottom-nav, .search_btn_box {
+        display: none !important;
+    }
+    
+}
+@media screen and (max-width: 992px) {
+    .nav-logo {
+        margin-right: 0 !important;
+    }
+    .search_btn_box {
+        width: 96px;
+        display: inline-block !important;
+    }
+	.nav_user_item {
+		width: 96px;
+	}
+	.nav_user_item .login_btn,  .nav_user_item .reg_btn {
+		padding: 3px 6px !important;
+	}
+}
+
+</style>
+<header id="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <span class="search_btn_box">
+                <a href="/search" class="header_seach_but" style="display:block"><i class="icon-search" aria-hidden="true"></i></a>
+            </span>
+            <a class="navbar-brand nav-logo" href="#" style="line-height: 0;">
+                <img src="//www.kanxue.com/view/img/newhome3/kanxuelogo.png" style="height: 25px !important;" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="//www.kanxue.com">首页</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="//bbs.pediy.com">论坛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="//zhuanlan.kanxue.com">专栏</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="//www.kanxue.com/course.htm">课程</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                            <a class="nav-link" href="//ctf.pediy.com">CTF</a>
+                            <!-- <img class="position-absolute" style="width: 27px; top: -5px; right: -7px; z-index: 3;" src="//passport.kanxue.com/pc/view/img/hot.png" alt=""> -->
+                    </li>
+                    <li class="nav-item position-relative">
+                            <a class="nav-link" href="//www.kanxue.com/conference.htm">看雪峰会</a>
+                            <img class="position-absolute" style="width: 27px; top: -5px; right: -7px; z-index: 3;" src="//passport.kanxue.com/pc/view/img/hot.png" alt="">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="//qifu.kanxue.com">企服</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="//job.kanxue.com">招聘</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle nav-link px-0 seach_btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                发现
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <!-- <a class="dropdown-item" href="//ctf.pediy.com">CTF</a> -->
+                                    <a class="dropdown-item" href="//ce.kanxue.com">众测</a>
+                                    <a class="dropdown-item " href="//www.kanxue.com/rank.htm">排行榜</a>
+                                    <a class="dropdown-item " href="//www.kanxue.com/chm.htm">知识库</a>
+                                    <a class="dropdown-item" href="//www.kanxue.com/tool.htm">工具下载</a>
+                                    <a class="dropdown-item" href="//www.kanxue.com/conference.htm">看雪峰会</a>
+                                    <a class="dropdown-item  " href="//www.kanxue.com/mrt.htm">看雪20年</a>
+                                    <a class="dropdown-item" href="//www.kanxue.com/shop.htm">看雪商城</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+            <div class="text-right nav_user_item">
+                                <a class="login_btn" href="//passport.kanxue.com/user-login.htm">登录</a>
+                <a class="reg_btn ml-2" href="//passport.kanxue.com/user-mobile-1.htm">注册</a>
+                            </div>
+            
+        </nav>
+    </div>
+</header>
+<div class="position-fixed w-100 header_fiexd bottom-nav" style="width: 100%; height: 50px; bottom: 0; z-index: 2; background: #fafafa;">
+    <div class="row mx-0 text-center">
+        <a href="//www.kanxue.com" class="d-inline-blok col px-0 header_nav_a opts-group" style="max-width: 20%;">
+            <div>
+                <i class="icon-home"></i>
+            </div>
+            <div>
+                首页
+            </div>
+        </a>
+        <a href="//bbs.pediy.com" class="d-inline-blok col px-0 header_nav_a opts-group" style="max-width: 20%;">
+            <div>
+                <i class="icon-comments"></i>
+
+            </div>
+            <div>
+                论坛
+            </div>
+        </a>
+        <a href="//www.kanxue.com/course.htm" class="d-inline-blok col px-0 header_nav_a opts-group" style="max-width: 20%;">
+            <div>
+                <i class="icon-book"></i>
+            </div>
+            <div>
+                课程
+            </div>
+        </a>
+        <a href="//job.kanxue.com" class="d-inline-blok col px-0 header_nav_a opts-group" style="max-width: 20%;">
+            <div>
+                <i class="icon-clipboard"></i>
+            </div>
+            <div>
+                招聘
+            </div>
+        </a>
+        <!-- <a href="#" class="d-inline-blok col px-0" style="max-width: 20%;"> -->
+        <div class=" dropup d-inline-blok col px-0"  style="max-width: 20%;">
+            <a class="dropdown-toggle d-inline-block header_nav_a opts-group" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div>
+
+                    <i class="icon-list"></i>
+                </div>
+                <div>
+                    发现
+                </div>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="//job.kanxue.com">招聘</a>
+                    <a class="dropdown-item" href="//ctf.pediy.com">CTF</a>
+                    <a class="dropdown-item" href="//ce.kanxue.com">众测</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/rank.htm">排行榜</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/chm.htm">知识库</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/tool.htm">工具下载</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/conference.htm">看雪峰会</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/mrt.htm">看雪20年</a>
+                    <a class="dropdown-item" href="//www.kanxue.com/shop.htm">看雪商城</a>
+            </div>
+        </div>
+        <!-- </a> -->
+    </div>
+</div>
+
+
+
+
+<div id="wrapper">
+
+
+
+<style>
+  .color0099ee {
+    color: #0099ee;
+  }
+	#frame_right {
+		min-height: 80vh;
+		background: #f0f5f8;
+	}
+	.classification {
+		padding: 7rem 0;
+	}
+	#frame_right a {
+		text-decoration: none;
+	}
+
+	.login-sns a.wechat_login {
+
+		width: 44px;
+		height: 44px;
+		display: inline-block;
+		border-radius: 50%;
+		line-height: 44px;
+		font-size: 20px;
+	}
+
+	.title {
+		margin: 70px auto 50px;
+
+		color: #b1b1b1;
+	}
+
+	#frame_right h4 {
+		font-size: 1.5rem;
+	}
+
+	#frame_right h1,
+	#frame_right h2,
+	#frame_right h3,
+	#frame_right h4,
+	#frame_right h5,
+	#frame_right h6 {
+		margin: 10px 0;
+		font-family: inherit;
+
+		line-height: 20px;
+		color: inherit;
+		text-rendering: optimizelegibility;
+	}
+
+	.title span {
+		position: relative;
+		top: 10px;
+		padding: 0 30px;
+		/*background: white;*/
+	}
+
+	.title span .active {
+		color: #555555;
+	}
+
+	.title b {
+		margin: 0 10px;
+		font-weight: bold;
+
+	}
+
+	.title span a {
+		color: #b1b1b1;
+	}
+
+	@media (max-width: 768px) {
+		#weixin_mobile {
+			display: none;
+		}
+
+		#mobile_kx_view {
+			margin-bottom: 30px
+		}
+	}
+	#mobile_kx_view input {
+		padding: 0.7rem 0.7rem;
+	}
+	.login_inside_box {
+		padding: 2rem 15rem 4rem;
+	}
+	.register_btn {
+		border: 1px solid #ced4da;
+	}
+	@media (max-width: 992px) {
+		.login_inside_box {
+			padding: 2rem 2rem 4rem;
+		}
+	}
+</style>
+
+  <div id="frame_right" class="classification">
+    <div class="container" style="width: 100%;height: 100%; padding-top: 0px">
+
+      <div class="row mx-0 login_box_bg justify-content-md-center">
+          <div class="col-12 col-lg-9 text-center bg-white login_inside_box" style="border-radius: 5px;">
+
+            <h4 class="mt-0 mb-3 py-4">
+              <span>登录</span>
+            </h4>
+            <div id="mobile_kx_view">
+              <!-- <div class="alert alert-warning" role="alert" style="font-size:14px; padding:0.6rem">
+              依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！
+              </div> -->
+
+              <form id="form" action="user-kanxue_login.htm" class="form" method="POST">
+
+                  <div class="form-group input-group mb-4">
+                      <!-- <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                      </div> -->
+                      <input class="form-control" type="text" name="account" id="account" placeholder="手机号&nbsp;/&nbsp;邮箱&nbsp;/&nbsp;用户名">
+                      <div class="invalid-feedback"></div>
+                  </div>
+
+                   <div class="form-group input-group mb-4">
+                      <!-- <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                      </div> -->
+                      <input class="form-control" type="password" name="password" id="password" placeholder="密码">
+                      <div class="invalid-feedback"></div>
+                  </div>
+                                                      <div class="mb-4" style="height: 40px; line-height: 40px;">
+                   <div id="captcha_div"></div>
+                  </div>
+                                                      <div class="form-group">
+                      <button type="submit" class="btn btn-block text-white btn-lg" style="background: #0099ee;" id="submit" data-loading-text="正在提交..." default-text="登录">登 录</button>
+                  </div>
+
+                   <dl class="row">
+                      <dt class="text-left"><a href="user-mobile.htm" style="color: #0099ee;">手机验证码登录</a></dt>
+                      <dd class="text-right"><a href="user-findpw.htm" class="text-muted ml-3"><small>忘记密码？</small></a></dd>
+                  </dl>
+              </form>
+            </div>
+
+            <div class="login-sns mt-3" id="weixin_mobile">
+                <div class=" text-muted my-0 position-relative">
+			<hr class=" position-absolute w-100">
+			<div class="d-inline-block bg-white px-3 position-relative" style="height: 28px; line-height: 28px;">
+				使用以下账号登录
+			</div> 
+		</div>
+
+    <a href="wx_user-wx_login_other.htm" class="wechat_login my-3">
+			<img src="../pc/view/img/wechat_login.png" style="width: 100%; height: 100%;" alt="" data-toggle="tooltip" data-placement="top" title="Use Wechat and scan the QR code to login in.">
+    </a>
+    	    </div>
+	    <div class="mt-3">
+      
+        <a href="/user-mobile-1.htm" class="btn btn-block register_btn btn-lg text-muted bg-white" style="font-size: 1rem;">
+          没有账号？立即免费注册
+        </a>
+
+      </div>
+      <div class="mt-4 text-center text-muted">
+        登录即表示你同意网站的 <a class="color0099ee" href="//bbs.pediy.com/thread-71978.htm" target="_blank">《服务条款》</a> 
+      </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<div id="footer" class="text-muted" style="background: #3b4348; height: auto;">
+    <div class="container">
+        <dl class="row my-3">
+            <dt>
+                ©2000-2019 看雪学院 | 微信公众号：ikanxue
+			</dt>
+            <dd class="text-right">
+                Time: <b>0.009</b>, SQL: <b>0</b> / 沪ICP备16048531号-1 / <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011502006611" style="text-decoration:none;"><img src="./pc/view/img/110.png" style="padding-left: 2px; padding-right: 3px; vertical-align: bottom;"></a>沪公网安备 31011502006611号
+            </dd>
+        </dl>
+    </div>
+</div>
+</div>
+<div class="act_go_top position-fixed" style="display: none; bottom: 80px; right: 10px; width: 70px; height: 70px;">
+    <a href="javascript:void(0);" class="d-inline-block" style="width: 70px; height: 70px; background: url(//www.kanxue.com/view/img/new_homepage/return_top.png) no-repeat; outline: none;" title="返回顶部"></a>
+</div>
+<script src="//bbs.pediy.com/lang/zh-cn/bbs.js"></script>
+<script src="xiunoui/jquery-3.1.0.js"></script>
+<script src="//bbs.pediy.com/view/js/popper.js"></script>
+<script src="//bbs.pediy.com/view/js/bootstrap.js"></script>
+<script src="pc/view/js/xiuno.js"></script>
+<script src="//www.kanxue.com/view/js/bootstrap-plugin.js"></script>
+<script src="xiunoui/async.js"></script>
+<script src="pc/view/js/form.js"></script>
+<script src="xiunoui/md5.js"></script>
+<script src="xiunoui/upload.js"></script>
+<script src="pc/view/js/vue.min.js"></script>
+
+<script>
+$('[data-toggle="tooltip"]').tooltip();
+
+   
+</script>
+
+</body>
+</html>
+<script>
+    
+    $(function() {
+        var islogin = '0';
+    if(islogin == 0)  return;
+
+    var pm_number = "//www.kanxue.com/pm-new.htm";
+    $.xget(pm_number, function(code, message) {
+        var pm_number = $(".pm_number");
+        var sysm_number = $(".system_message_number");
+        if (code == 0) {
+            var newpms = parseInt(message.newpms);
+            var system_pms = parseInt(message.system_pms);
+            var pm_total = newpms + system_pms;
+            if (pm_total != 0) {
+                pm_total = pm_total > 99 ? "99+" : pm_total;
+                $(".pm_total").html(pm_total);
+
+                if (system_pms > 0 && newpms == 0) {
+                    var href = "//www.kanxue.com/?pm-system_read-1.htm";
+                    $(".pm_total_a").attr("href", href);
+                }
+
+            } else {
+                // $(".pm_total_a").css("display","none");
+            };
+            if (message.newpms != 0) {
+                pm_number.html(message.newpms);
+                pm_number.addClass("pmmessage_number");
+            } else {
+                pm_number.css("display", "none");
+            };
+            if (message.system_pms != 0) {
+                sysm_number.html(message.system_pms);
+                sysm_number.addClass("pmmessage_number");
+            } else {
+                sysm_number.css("display", "none");
+            };
+            if (message.newpms != 0) {
+                pm_number.html(message.newpms);
+                pm_number.addClass("pm_numbers_");
+            } else {
+                pm_number.css("display", "none");
+            };
+            if (message.system_pms != 0) {
+                sysm_number.html(message.system_pms);
+                sysm_number.addClass("pm_numbers_");
+            } else {
+                sysm_number.css("display", "none");
+            };
+
+
+        } else {
+            
+            pm_number.css("display", "none");
+            sysm_number.css("display", "none");
+
+        }
+    })
+
+
+
+
+        var new_p = 0, start_scrollTop = 0;
+        $(window).scroll(function(e){  
+            new_p = $(this).scrollTop();  
+                
+            if(start_scrollTop < new_p) {//下滚  
+                $('.header_fiexd').css("display","none");
+            } else {//上滚  
+                $('.header_fiexd').css("display","block");
+            }  
+            setTimeout(function(){start_scrollTop = new_p;},0);         
+        });
+        $(window).scroll(function() {
+            
+            if ($(window).scrollTop() >= 500) {
+                $('.act_go_top').fadeIn(300);
+            } else {
+                $('.act_go_top').fadeOut(300);
+            }
+        });
+
+        $('.act_go_top').click(function() {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        var m1 = 0;     // 滚动的值
+        var m2 = 0;     // 对比时间的值
+        var timer = null;
+        document.onscroll = function(){
+            clearTimeout(timer) // 每次滚动前 清除一次
+            timer = setTimeout(Data, 2000);
+            m1 = document.documentElement.scrollTop || document.body.scrollTop;
+
+        }
+        function Data(){
+            m2 = document.documentElement.scrollTop || document.body.scrollTop;
+            if(m2 == m1){
+                $('.act_go_top').fadeOut(300);
+            }
+        }
+    })
+
+</script>      <script src="//cstaticdun.126.net/load.min.js"></script>
+    <script> // 验证码组件初始化
+    var netease = (function() {
+      var init = function(cid, ele) {
+        initNECaptcha({
+        captchaId: cid,
+            element: ele,
+            mode: 'float',
+            width: '100%',
+            float:'left',
+            onVerify: function(err, ret){
+              if(!err){
+                
+              }
+            }
+          }, function (instance) {
+            $(".yidun").css("float","left");
+            
+          }, function (err) {
+           
+          });
+      }
+      return {init:init}
+    })();
+    netease.init('e019d55cf18348519c201a0d2f80ebfb','#captcha_div');
+    </script>
+     <script>
+
+
+var jform = $('#form');
+var jaccount = jform.find('input[name="account"]');
+var jpassword = jform.find('input[name="password"]');
+
+var jsubmit = jform.find('button[type="submit"]');
+var referer = 'https://bbs.pediy.com/thread-224228.htm';
+var verify_code_mode = '1';
+jform.off('submit').on('submit', function() {
+  if(!jaccount.val()) {
+    jaccount.alert('请输入帐号').focus();
+    return false;
+  } else if(!jpassword.val()) {
+    jform.find('input[name="password"]').alert('请输入密码').focus();
+    return false;
+  }
+
+  var jNECaptchaValidate;
+  if(verify_code_mode ==1 ) {
+ 
+		jNECaptchaValidate = jform.find('input[name="NECaptchaValidate"]').val();
+
+  } else if(verify_code_mode ==2) {
+    jNECaptchaValidate = $("#private_key").val();
+  }
+  
+
+  var postdata = "account="+jaccount.val()+"&password="+$.md5(jpassword.val())+"&NECaptchaValidate="+jNECaptchaValidate;
+
+  jsubmit.button('loading');
+  $.xpost(jform.attr('action'), postdata, function(code, message) {
+    if(code == 0) {
+      jsubmit.button('登录成功');
+      var js1 = "//ce.kanxue.com/ucenter/user.php?action=synlogin&token="+message+"&time=1560095805";
+      var js2 = "//bbs.pediy.com/ucenter/user.php?action=synlogin&token="+message+"&time=1560095805";
+      var js4 = "//ctf.pediy.com/ucenter/user.php?action=synlogin&token="+message+"&time=1560095805";
+
+      var jsarr = [];
+      jsarr.push(js1);
+      jsarr.push(js2);       jsarr.push(js4);
+
+      $.require(jsarr,function() {
+        setTimeout(function() {window.location=referer;}, 1000);
+      });
+
+    } else if(code < 0) {
+      $.alert(message);
+      jsubmit.button('reset');
+    } else {
+      if(code == 1) jaccount.alert(message).focus();
+      if(code == 2) jpassword.alert(message).focus();
+      // jform.find('[name="'+code+'"]').alert(message).focus();
+      jsubmit.button('reset');
+    }
+  });
+  return false;
+});
+
+
+</script>
+
